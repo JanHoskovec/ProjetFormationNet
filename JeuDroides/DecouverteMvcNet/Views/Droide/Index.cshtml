@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste des droides</h2>
+
+
+@foreach (var entier in ViewBag.MaListe)
+{
+<p>
+    <strong> @(entier + 10) </strong><br />
+</p>
+}

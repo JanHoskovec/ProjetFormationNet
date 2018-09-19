@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Affichage d'un paragraphe</h2>
+
+<p>
+    @ViewBag.MonParagraphe.Contenu
+</p>
+<p>
+    @ViewBag.MonParagraphe.MaQuestion.Contenu
+</p>
+<ul>
+    @foreach (var reponse in ViewBag.MonParagraphe.MaQuestion.MesReponses)
+    {
+        <li>@reponse.Contenu</li>
+    }
+</ul>
