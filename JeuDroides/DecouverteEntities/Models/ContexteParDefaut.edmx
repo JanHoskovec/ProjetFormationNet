@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="JeuDroideModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Droide">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Matricule" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateCreation" Type="datetime" Nullable="false" />
+          <Property Name="DateDerniereMiseAJour" Type="datetime" />
+          <Property Name="IdEquipeCombat" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="EquipeCombat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateCreation" Type="datetime" Nullable="false" />
+          <Property Name="DateDerniereModification" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Paragraphe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Contenu" Type="varchar(max)" Nullable="false" />
+          <Property Name="Numero" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Toto" Type="int" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Contenu" Type="varchar(max)" Nullable="false" />
+          <Property Name="ParagraphId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reponse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Contenu" Type="varchar(max)" Nullable="false" />
+          <Property Name="QuestionId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Wookie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateCreation" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Droide_EquipeCombat">
+          <End Role="EquipeCombat" Type="Self.EquipeCombat" Multiplicity="0..1" />
+          <End Role="Droide" Type="Self.Droide" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipeCombat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Droide">
+              <PropertyRef Name="IdEquipeCombat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Paragraphe">
+          <End Role="Paragraphe" Type="Self.Paragraphe" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paragraphe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="ParagraphId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reponse_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="Reponse" Type="Self.Reponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reponse">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JeuDroideModelStoreContainer">
+          <EntitySet Name="Droide" EntityType="Self.Droide" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EquipeCombat" EntityType="Self.EquipeCombat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paragraphe" EntityType="Self.Paragraphe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reponse" EntityType="Self.Reponse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wookie" EntityType="Self.Wookie" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Droide_EquipeCombat" Association="Self.FK_Droide_EquipeCombat">
+            <End Role="EquipeCombat" EntitySet="EquipeCombat" />
+            <End Role="Droide" EntitySet="Droide" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Paragraphe" Association="Self.FK_Question_Paragraphe">
+            <End Role="Paragraphe" EntitySet="Paragraphe" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reponse_Question" Association="Self.FK_Reponse_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Reponse" EntitySet="Reponse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JeuDroideModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Droide">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Matricule" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreation" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateDerniereMiseAJour" Type="DateTime" Precision="3" />
+          <Property Name="IdEquipeCombat" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="EquipeCombat" Relationship="Self.FK_Droide_EquipeCombat" FromRole="Droide" ToRole="EquipeCombat" />
+        </EntityType>
+        <EntityType Name="EquipeCombat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreation" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateDerniereModification" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Droide" Relationship="Self.FK_Droide_EquipeCombat" FromRole="EquipeCombat" ToRole="Droide" />
+        </EntityType>
+        <EntityType Name="Paragraphe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Contenu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Numero" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="MaQuestion" Relationship="Self.FK_Question_Paragraphe" FromRole="Paragraphe" ToRole="Question" />
+          <Property Name="Titre" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Contenu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ParagraphId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Paragraphe" Relationship="Self.FK_Question_Paragraphe" FromRole="Question" ToRole="Paragraphe" />
+          <NavigationProperty Name="MesReponses" Relationship="Self.FK_Reponse_Question" FromRole="Question" ToRole="Reponse" />
+        </EntityType>
+        <EntityType Name="Reponse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Contenu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuestionId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Reponse_Question" FromRole="Reponse" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="Wookie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateCreation" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_Droide_EquipeCombat">
+          <End Role="EquipeCombat" Type="Self.EquipeCombat" Multiplicity="0..1" />
+          <End Role="Droide" Type="Self.Droide" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipeCombat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Droide">
+              <PropertyRef Name="IdEquipeCombat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Paragraphe">
+          <End Role="Paragraphe" Type="Self.Paragraphe" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paragraphe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="ParagraphId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reponse_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="Reponse" Type="Self.Reponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reponse">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JeuDroideEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Droide" EntityType="Self.Droide" />
+          <EntitySet Name="EquipeCombat" EntityType="Self.EquipeCombat" />
+          <EntitySet Name="Paragraphe" EntityType="Self.Paragraphe" />
+          <EntitySet Name="Question" EntityType="Self.Question" />
+          <EntitySet Name="Reponse" EntityType="Self.Reponse" />
+          <EntitySet Name="Wookie" EntityType="Self.Wookie" />
+          <AssociationSet Name="FK_Droide_EquipeCombat" Association="Self.FK_Droide_EquipeCombat">
+            <End Role="EquipeCombat" EntitySet="EquipeCombat" />
+            <End Role="Droide" EntitySet="Droide" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Paragraphe" Association="Self.FK_Question_Paragraphe">
+            <End Role="Paragraphe" EntitySet="Paragraphe" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reponse_Question" Association="Self.FK_Reponse_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Reponse" EntitySet="Reponse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JeuDroideModelStoreContainer" CdmEntityContainer="JeuDroideEntities">
+          <EntitySetMapping Name="Droide">
+            <EntityTypeMapping TypeName="JeuDroideModel.Droide">
+              <MappingFragment StoreEntitySet="Droide">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Matricule" ColumnName="Matricule" />
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+                <ScalarProperty Name="DateDerniereMiseAJour" ColumnName="DateDerniereMiseAJour" />
+                <ScalarProperty Name="IdEquipeCombat" ColumnName="IdEquipeCombat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipeCombat">
+            <EntityTypeMapping TypeName="JeuDroideModel.EquipeCombat">
+              <MappingFragment StoreEntitySet="EquipeCombat">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+                <ScalarProperty Name="DateDerniereModification" ColumnName="DateDerniereModification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paragraphe">
+            <EntityTypeMapping TypeName="JeuDroideModel.Paragraphe">
+              <MappingFragment StoreEntitySet="Paragraphe">
+                <ScalarProperty Name="Titre" ColumnName="Toto" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Contenu" ColumnName="Contenu" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question">
+            <EntityTypeMapping TypeName="JeuDroideModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Contenu" ColumnName="Contenu" />
+                <ScalarProperty Name="ParagraphId" ColumnName="ParagraphId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reponse">
+            <EntityTypeMapping TypeName="JeuDroideModel.Reponse">
+              <MappingFragment StoreEntitySet="Reponse">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Contenu" ColumnName="Contenu" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wookie">
+            <EntityTypeMapping TypeName="JeuDroideModel.Wookie">
+              <MappingFragment StoreEntitySet="Wookie">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
