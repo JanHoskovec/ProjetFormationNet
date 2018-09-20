@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Avatar.cs" />
+    <Compile Include="Models\Droide.cs" />
     <Compile Include="Models\Espece.cs" />
     <Compile Include="Models\Paragraphe.cs" />
     <Compile Include="Models\Question.cs" />

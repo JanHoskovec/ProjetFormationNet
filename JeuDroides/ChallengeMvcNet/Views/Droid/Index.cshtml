@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Droids whose name begins with an M :</h2>
+
+<ul>
+    @foreach (var droid in ViewBag.Droids)
+    {
+        <li>@droid.Nom</li>
+    }
+</ul>
