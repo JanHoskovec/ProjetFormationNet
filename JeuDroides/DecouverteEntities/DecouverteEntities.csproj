@@ -181,7 +181,6 @@
     <Compile Include="Models\EquipeCombat.cs">
       <DependentUpon>ContexteParDefaut.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MaClasse.cs" />
     <Compile Include="Models\Paragraphe.cs">
       <DependentUpon>ContexteParDefaut.tt</DependentUpon>
     </Compile>
@@ -254,6 +253,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Paragraphe\Index.cshtml" />
     <Content Include="Views\Paragraphe\Edit.cshtml" />
+    <Content Include="Views\Paragraphe\Ajouter.cshtml" />
+    <Content Include="Views\Paragraphe\Supprimer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -273,6 +274,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MaSuperLibrarie\MaSuperLibrarie.csproj">
+      <Project>{eba6e096-5ee9-49ba-bb20-c751a4676f8a}</Project>
+      <Name>MaSuperLibrarie</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
