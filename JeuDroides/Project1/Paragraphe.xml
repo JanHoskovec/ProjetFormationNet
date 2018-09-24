@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!--<?xml-stylesheet type="text/xsl" href= "Paragraphe.xslt" ?>-->
+
+
+<ArrayOfParagraphe xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/MaSuperLibrarie.Models">
+  <Paragraphe>
+    <Contenu>
+      Vous commencez votre aventure dans l’espace, à bord d’un vaisseau.
+      Votre vaisseau est destiné à arriver sur la planète Geonosis pour commencer les combats.
+
+      Vous, {prénom} êtes un jedi débutant, c’est votre première bataille.
+      Un Storm troopers à côté de vous, vous voit et vous demande :
+
+      Ca va master {prénom}. Vous semblez inquiet ?!
+    </Contenu>
+    <Id>1</Id>
+    <Numero>1</Numero>
+    <Titre i:nil="true" />
+  </Paragraphe>
+  <Paragraphe>
+    <Contenu>Un monstre de deux tonnes est devant vous.</Contenu>
+    <Id>2</Id>
+    <Numero>2</Numero>
+    <Titre i:nil="true" />
+  </Paragraphe>
+  <Paragraphe>
+    <Contenu>Un monstre de quatre tonnes est devant vous.</Contenu>
+    <Id>8</Id>
+    <Numero>555</Numero>
+    <Titre i:nil="true" />
+  </Paragraphe>
+</ArrayOfParagraphe>

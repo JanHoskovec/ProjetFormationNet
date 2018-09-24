@@ -29,8 +29,7 @@ namespace DecouverteEntities.Controllers
                              select item).Single());
             }
         }
-
-        // ne fonctionne pas
+        
         [HttpPost]
         public ActionResult Edit(Paragraphe paragraphe)
         {

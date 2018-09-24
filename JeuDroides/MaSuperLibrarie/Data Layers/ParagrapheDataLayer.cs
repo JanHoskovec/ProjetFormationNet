@@ -31,5 +31,34 @@ namespace MaSuperLibrarie.Data_Layers
 
             }
         }
+
+        public void Create(Paragraphe p)
+        {
+            using (JeuDroideEntities context = new JeuDroideEntities())
+            {
+                context.Paragraphe.Add(p);
+                context.SaveChanges();
+            }
+        }
+
+        public void Update(Paragraphe p)
+        {
+            using (JeuDroideEntities context = new JeuDroideEntities())
+            {
+                
+
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (JeuDroideEntities context = new JeuDroideEntities())
+            {
+                context.Paragraphe.Remove((from para in context.Paragraphe
+                                           where para.Id == id
+                                           select para).Single());
+                context.SaveChanges();
+            }
+        }
     }
 }
