@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BE6426BF-AFD0-4281-98D4-BD89601A6909}</ProjectGuid>
+    <ProjectGuid>{2F117B57-38D0-486D-869B-AACEE8DF690D}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleAppApiAppelXml</RootNamespace>
-    <AssemblyName>ConsoleAppApiAppelXml</AssemblyName>
+    <RootNamespace>ConsoleAppApiAppelJson1Item</RootNamespace>
+    <AssemblyName>ConsoleAppApiAppelJson1Item</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\ClasseDeTestJson.cs" />
+    <Compile Include="Models\JsonContent.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

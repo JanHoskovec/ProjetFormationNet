@@ -19,6 +19,9 @@ namespace DecouverteAPIWebAPI
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            var myXmlFormatter = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(celui => celui.MediaType == "application/xml");
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(myXmlFormatter);
         }
     }
 }
