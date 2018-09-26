@@ -26,8 +26,9 @@ namespace DecouverteAPIWebAPI.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Paragraphe p)
         {
+            dl.Create(p);
         }
 
         // PUT api/values/5
