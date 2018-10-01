@@ -19,7 +19,7 @@ namespace UnitTestProject1
         public void TestDivisionDivisionParZero()
         {
             Calculator calc = new Calculator();
-            Assert.ThrowsException<DivideByZeroException>(new Action(() => calc.Diviser(10,0)));
+            Assert.ThrowsException<DivideByZeroException>(() => calc.Diviser(10,0));
         }
     }
 }
